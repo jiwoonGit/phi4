@@ -8,8 +8,9 @@
 
 # Fractional Spread-out Ising model (/fractional_spread_out_ising_rg)
 * This folder includes results on the critical Ising model in dimensions $d\le 4$, with interaction kernel $(-\Delta_R)^{d/4}$, where $\Delta_R$ is the spread-out Laplacian with radius $R$. The main theorem states: for each \(d\in\{1,2,3,4\}\) and all sufficiently large fixed \(R\), the model \eqref{frac:weight} has critical free two-point asymptotic
-$$
+
+$
 \langle\sigma_0\sigma_x\rangle^f_{\tau_c}
        \sim C_{d,R}|x|^{-d/2},\qquad C_{d,R}>0,
        \qquad |x|\rightarrow\infty.
-$$
+$
