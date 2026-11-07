@@ -11,3 +11,4 @@
 
 <p align="center"> $\langle\sigma_0\sigma_x\rangle^f_{\tau_c} \sim C_{d,R}|x|^{-d/2},\qquad C_{d,R}>0, \qquad |x|\rightarrow\infty$. </p>
 
+* In particular, in $d=4$, the model is the usual Ising model with the nearest-neighbour interaction replaced by the spread-out Laplacian.
