@@ -12,3 +12,6 @@
 <p align="center"> $\langle\sigma_0\sigma_x\rangle^f_{\tau_c} \sim C_{d,R}|x|^{-d/2},\qquad C_{d,R}>0, \qquad |x|\rightarrow\infty$. </p>
 
 * In particular, in $d=4$, the model is the usual Ising model with the nearest-neighbour interaction replaced by the spread-out Laplacian.
+
+# Critical \(\phi^4_2\) model (/critical_phi42)
+* This folder includes results on the critical \(\phi^4\) model in dimensions $d=2$, with sufficiently large coupling constant. The document "The critical two-point function of lattice \(\phi^4_2\)" shows that the two-point correlation function follows an asymptotic behavior equivalent to that of the Ising model, \(C|x|^{-1/4}\).
