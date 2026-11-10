@@ -1,0 +1,1361 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\E}{\mathbb E}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+
+\title{The critical two-point function of lattice $\phi^4_2$}
+\author{Jiwoon Park}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In this article, we show that the critical two-point correlation function of the lattice $\phi^4_2$ model in the strong coupling regime
+follows that of the Ising universality class.
+\end{abstract}
+
+\subsection*{AI statement}
+
+This document is generated using ChatGPT 6.1 Sol.
+
+\section{Main results}
+
+We consider real spins \(\phi_v\) on the square lattice with single-site
+probability measure \(\rho_g(\mathrm d\phi)\propto
+e^{-g(\phi^2-1)^2}\mathrm d\phi\), \(g>0\). The interaction weight
+in finite volume is \(\exp(\beta\sum_{\langle u,v\rangle}\phi_u\phi_v)\),
+where the sum counts each unoriented nearest-neighbor edge once.
+Write \(\langle\cdot\rangle_\beta^0\) and
+\(\langle\cdot\rangle_\beta^+\) for the infinite-volume free and plus
+states, respectively, and set
+\[
+ G_{\phi,\beta}(x)=\langle\phi_0\phi_x\rangle_\beta^0,\qquad
+ m_+(\beta)=\langle\phi_0\rangle_\beta^+,\qquad
+ \beta_c(g)=\inf\{\beta>0:m_+(\beta)>0\}.
+\]
+Let \(\mu_{\rm I}\) denote the unique infinite-volume nearest-neighbor Ising
+state at \(\beta_{\rm I}=\tfrac12\log(1+\sqrt2)\), and put
+\(G_{\rm I}(x)=\mu_{\rm I}(\sigma_0\sigma_x)\).
+Use \(|x|\) for the Euclidean norm and \(|x|_\infty\) for the max norm.
+
+\begin{theorem}\label{thm:main}
+There exist \(g_0<\infty\) and \(\omega>0\) such that for every fixed
+\(g\ge g_0\) there is \(Z_\phi(g)>0\) with \(Z_\phi(g)=1+O(g^{-1})\)
+and, uniformly as \(|x|\to\infty\),
+\begin{equation}
+ G_{\phi,\beta_c(g)}(x)
+   = Z_\phi(g)^2G_{\rm I}(x)+O_g(|x|^{-1/4-\omega}).
+ \label{eq:direct-bulk-phi-two}
+\end{equation}
+In particular \(G_{\phi,\beta_c(g)}(x)\sim C_g |x|^{-1/4}\) for a
+constant \(C_g>0\).
+\end{theorem}
+
+The pure Ising inputs are the conditional-averaging estimates and
+calibration stated in Lemma~\ref{lem:pure-reference}, from
+\cite[Proposition 4.1 and Lemma 5.3]{BulkIsingRadialRG}.
+Proposition~\ref{prop:microscopic-input} gives the starting lists for
+the background and the physical insertions. Propositions
+\ref{prop:blocking} and \ref{prop:linear} give the analytic and linear
+blocking estimates. The massless tuning in Proposition~\ref{prop:tuning}
+and the periodic comparison in Proposition~\ref{prop:periodic} then
+supply the backgrounds used in Proposition~\ref{prop:two-point-comparison}.
+The proof of Theorem~\ref{thm:main} uses that comparison to identify the
+tuned temperature with \(\beta_c(g)\).
+
+For the finite-volume argument, let \(\mathbb T_N=(\mathbb Z/N\mathbb Z)^2\),
+with its nearest-neighbor edges. Use \(\langle\cdot\rangle_{N,\beta}\)
+and \(\mu_{{\rm I},N}\) for the scalar-field and critical Ising
+probability measures on this torus, and define
+\[
+ G_{\phi,\beta;N}(x)=\langle\phi_0\phi_x\rangle_{N,\beta},
+ \qquad G_{{\rm I};N}(x)=\mu_{{\rm I},N}(\sigma_0\sigma_x).
+\]
+A fixed \(x\in\mathbb Z^2\setminus\{0\}\) is identified with its torus
+image for all sufficiently large \(N\). For two commuting labels
+\(t=(t_0,t_x)\), define the partition integral
+\[
+ \mathcal Z_{N,\beta}(t)=
+ \int e^{\beta\sum_{\langle u,v\rangle}\phi_u\phi_v}
+ (1+t_0\phi_0)(1+t_x\phi_x)
+ \prod_{v\in\mathbb T_N}\rho_g(\mathrm d\phi_v).
+\]
+Write \(M_x=\{0,x\}\) and \(t^S=\prod_{u\in S}t_u\) for \(S\subseteq M_x\).
+Source identities are in the ring
+\(\mathbb C[t_0,t_x]/(t_0^2,t_x^2)\).
+We write \(\varepsilon=g^{-1}\).
+Positive constants \(c,C\) may change from line to line.
+Constants in the RG bounds are uniform in the volume, scale index,
+separation and sufficiently large \(g\), unless dependence is indicated.
+The blocking ratio and starting radius are fixed before choosing \(g\).
+
+\section{Microscopic interaction and sources}
+\label{sec:amplitudes}
+
+Use \(\Lambda\) for \(\mathbb Z^2\) or \(\mathbb T_N\). In torus
+statements with two marks assume \(N>4|x|\) and \(N\ge5\).
+Write \(d_\Lambda\) for graph distance and \(E(\Lambda)\) for the
+nearest-neighbor edges.
+
+\begin{definition}[Lists and norms]
+\label{def:list-norms}
+Let \(\Lambda=\mathbb Z^2\) or \(\mathbb T_N\), with the lattice
+max-norm distance \(d_\infty\) (the periodic distance on
+\(\mathbb T_N\)). All carrier diameters use \(d_\infty\).
+Let \(B_r=B_r(0)\) be the closed ball of integer radius \(r\ge1\),
+write \(B_r(z)\) for the ball centered at \(z\) and \(A+B_r\) for
+the \(r\)-neighborhood of \(A\), and set
+\(n_r(A)=|A+B_r|/r^2\). A list \(h=(h_{A,z})\) is indexed by
+finite nearest-neighbor connected carriers \(A\subset\Lambda\)
+and anchors \(z\in A\). The function \(h_{A,z}\) depends on
+spins in \(A\), possibly on a proper subset, and
+\(\|h_{A,z}\|_\infty=\sup_{\sigma\in\{-1,1\}^A}|h_{A,z}(\sigma)|\).
+Set
+\[
+ \|h\|_r=\sup_{y\in\Lambda}
+    \sum_{\substack{A\cap B_r(y)\ne\varnothing\\z\in A}}
+       e^{n_r(A)}\|h_{A,z}\|_\infty.
+\]
+For a marked list \(U\) with fixed nonempty label set \(S\), each
+carrier contains the sites of all labels in \(S\), and its anchor
+is the site of one prescribed label of \(S\). We use the norm
+\[
+ \|U\|_{r,\bullet}=\sum_{A,z}e^{n_r(A)}\|U_{A,z}\|_\infty .
+\]
+In each case the space of lists with finite norm is a Banach space.
+For a list whose coefficient functions have absolutely summable
+sup norms, write \(\operatorname{ev}(h)=\sum_{A,z}h_{A,z}\).
+This applies to marked lists on either lattice and to all lists
+of finite norm on a finite torus. The projection \(\pi_A\)
+on a carrier \(A\), abbreviated \(\pi\), subtracts the mean
+over independent uniform spins on \(A\). A list is canonical if
+each coefficient has zero such mean. We store the subtracted
+constants separately. Equivariance under a lattice symmetry means
+that applying it to the indices and to the spin configuration
+preserves each coefficient value. A homogeneous list is
+translation-equivariant. Spin-flip parity is taken coefficientwise.
+\end{definition}
+
+For \(a>0\), let
+\(\rho_g^+\) have density proportional to \(e^{-g(a^2-1)^2}\).
+Under the product of the single-site laws \(\rho_g\),
+the representation \(\phi_u=a_u\sigma_u\) gives independent
+amplitudes of law \(\rho_g^+\) and independent uniform signs,
+with the two families independent. Denote expectation over the
+amplitudes by \(\E_{\rm iid}\) and put \(\delta_u=a_u-1\).
+For \(e=\{u,v\}\) write \(\sigma_e=\sigma_u\sigma_v\).
+
+Fix a bounded open complex disk \(\mathcal B\) about \(\beta_{\rm I}\).
+
+\begin{lemma}[Amplitude and edge bounds]
+\label{lem:amplitude-moments}
+For fixed \(p,C\ge0\) and all sufficiently large \(g\), one has
+for \(\delta=a-1\)
+\begin{equation}
+ \E_{\rm iid}(|\delta|^p e^{Ca^2})\le C_{p,C}g^{-p/2},
+ \qquad |\E_{\rm iid}\delta|\le C_0 g^{-1}.
+ \label{eq:bulk-direct-well-absolute}
+\end{equation}
+For \(X_e=a_ua_v-1\) and \(d_e=e^{\beta X_e\sigma_e}-1\),
+uniformly over \(\beta\in\mathcal B\), edges and signs, one has for
+all sufficiently large \(g\)
+\begin{equation}
+ \|d_e\|_{L^p(\E_{\rm iid})}\le C_{p,\mathcal B}g^{-1/2}\quad(p\ge1),
+ \qquad |\E_{\rm iid} d_e|\le C_{\mathcal B} g^{-1}.
+ \label{eq:mic-edge-bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The normalizing integral for \(\rho_g^+\) is at least \(c g^{-1/2}\)
+by restriction to \([1,1+g^{-1/2}]\). Since
+\((a^2-1)^2=(a+1)^2\delta^2\ge\delta^2\) and
+\(e^{Ca^2}\le e^{2C+2C\delta^2}\), a Gaussian integral bounds
+the numerator of the first estimate. Integration by parts on
+\((0,\infty)\), using \(a e^{-g(a^2-1)^2}=0\) at both endpoints,
+gives \(4g\,\E_{\rm iid}(a^4-a^2)=1\).
+The identity \(a^4-a^2=2\delta+\delta^2(a^2+2a+2)\) and the first
+estimate imply the signed bound.
+
+Now \(X_e=\delta_u+\delta_v+\delta_u\delta_v\) and
+\(|X_e|\le1+(a_u^2+a_v^2)/2\).
+By independence and \eqref{eq:bulk-direct-well-absolute},
+\[
+ \E_{\rm iid}(|X_e|^p e^{C|X_e|})\le C_{p,C}g^{-p/2},
+ \qquad
+ \E_{\rm iid}X_e=2\E_{\rm iid}\delta+(\E_{\rm iid}\delta)^2.
+\]
+The bounds
+\[
+ |d_e|\le C_{\mathcal B}|X_e|e^{C_{\mathcal B}|X_e|},\qquad
+ |d_e-\beta\sigma_e X_e|\le C_{\mathcal B} X_e^2 e^{C_{\mathcal B}|X_e|}
+\]
+then give \eqref{eq:mic-edge-bound}.
+\end{proof}
+
+In the square-free source ring,
+\(1+t_u a_u\sigma_u=(1+t_u\sigma_u)(1+t_u\delta_u\sigma_u)\).
+The first factor is independent of the amplitudes and equals
+\(e^{t_u\sigma_u}\) in this ring. Define the torus amplitude polynomial
+\begin{equation}
+ W_N(\sigma;t)=\E_{\rm iid}\!\left[
+       \prod_{e\in E(\mathbb T_N)}(1+d_e)
+       \prod_{u\in M_x}(1+t_u\delta_u\sigma_u)\right].
+ \label{eq:bulk-direct-amplitude-generating}
+\end{equation}
+For estimates we view \(t\) as ordinary complex variables on
+\(|t_u|\le2\) and extract the square-free coefficients from the
+analytic logarithm. For \(S\subseteq M_x\), write \([t^S]\)
+for extraction of the coefficient of \(\prod_{u\in S}t_u\)
+with all other label exponents zero.
+
+\begin{proposition}[Microscopic interaction and sources]
+\label{prop:microscopic-input}
+For each fixed \(b\ge0\), all sufficiently large \(g\), and each
+\(S\subseteq M_x\), there are coefficient functions
+\(f^S_{A,z}(\beta)\), analytic in \(\beta\in\mathcal B\), indexed by finite
+nearest-neighbor connected carriers \(A\subseteq\Lambda\) and
+anchors \(z\in A\). For \(S\ne\varnothing\), all contributing
+carriers contain \(S\) and are anchored at its prescribed site
+(\(u\) for \(S=\{u\}\) and \(0\) for \(S=M_x\)). On the torus
+\([t^S]\log W_N=\sum_{A,z} f^S_{A,z}\), and the plane coefficients
+are given by the same local cluster formula. The bounds
+\begin{equation}
+ \begin{aligned}
+ \sup_{y\in\Lambda}\sum_{\substack{A\ni y\\z\in A}}
+     e^{b|A|}\|f^\varnothing_{A,z}\|_\infty&\le C_b\varepsilon,\\
+ \sum_{A,z} e^{b|A|}\|f^S_{A,z}\|_\infty
+    &\le C_b\varepsilon e^{-d_\Lambda(0,x)\mathbf 1_{\{S=M_x\}}}
+       \qquad(S\ne\varnothing)
+ \end{aligned}
+ \label{eq:bulk-direct-carrier}
+\end{equation}
+hold uniformly in \(\beta\), \(N\) and the separation. The background
+list is homogeneous, equivariant under quarter-turns, and even under
+spin flip.
+The parity of \(f^S_{A,z}\) under spin flip is \((-1)^{|S|}\).
+
+Use \(\pi_A\) to separate the constant of each coefficient function
+from its canonical list term. Denote the canonical background by
+\(h^{\rm mic}\), adding
+the temperature interaction
+\((\beta-\beta_{\rm I})\sum_e\sigma_e\), with half of each edge term
+assigned to each endpoint. Its site-rooted norm with weight
+\(e^{b|A|}\) is at most \(C_b(\varepsilon+|\beta-\beta_{\rm I}|)\).
+Denote the canonical marked lists by
+\(U_{\rm mic}^S\), including the bare spin term \(\sigma_u\) for
+\(S=\{u\}\), and the extracted scalars by \(c_{\rm mic}^S\).
+Then \(c_{\rm mic}^{\{u\}}=0\). In the marked norms with
+weight \(e^{b|A|}\), the singleton correction has size
+\(O(\varepsilon)\), and the mixed list and scalar together have
+size \(O(\varepsilon e^{-d_\Lambda(0,x)})\).
+For the torus let \(c_{\rm mic}^{\varnothing}\) be the scalar from
+the unmarked list and \(\mathcal Z_{{\rm I},N}\) the pure Ising
+partition function with product uniform signs as base measure.
+The exact partition identity is
+\begin{equation}
+ \frac{\mathcal Z_{N,\beta}(t)}{\mathcal Z_{{\rm I},N}}
+ =
+ e^{c_{\rm mic}^{\varnothing}+t^{M_x}c_{\rm mic}^{M_x}}
+ \,\mu_{{\rm I},N}\!\left(
+   \exp\!\left[\operatorname{ev}(h^{\rm mic})
+         +\sum_{\varnothing\ne S\subseteq M_x}
+                     t^S\operatorname{ev}(U_{\rm mic}^S)\right]\right).
+ \label{eq:mic-partition}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Make a graph on the factors in \eqref{eq:bulk-direct-amplitude-generating},
+with an edge between factors when their site supports intersect.
+Use \(d_i=d_e\) for an edge factor and \(d_i=t_u\delta_u\sigma_u\)
+for a marked factor. A polymer \(P\) is a nonempty connected set
+of factor vertices, \(A(P)\) is the union of its site supports, and
+\(\zeta(P)=\E_{\rm iid}\prod_{i\in P}d_i\).
+The components of any subset of factor vertices use disjoint
+families of amplitudes. Expansion of \eqref{eq:bulk-direct-amplitude-generating}
+therefore gives the polymer partition function with activities
+\(\zeta(P)\) and with incompatibility \(A(P)\cap A(Q)\ne\varnothing\).
+
+The degree of the factor graph is uniformly bounded, so it admits
+a proper coloring with a fixed number \(q\) of colors. Apply
+H\"older with exponent \(q\) to the products on the color classes.
+Independence of the amplitudes in each class gives
+\[
+ |\zeta(P)|\le \prod_{i\in P}\|d_i\|_{L^q}
+             \le (C_q g^{-1/2})^{|P|}.
+\]
+For \(|P|=1\) the signed mean bounds improve this to \(C\varepsilon\),
+including for a marked factor. The number of connected \(m\)-factor
+sets with \(y\in A(P)\) is at most \(C_1^m\), by traversing a
+spanning tree from a factor incident to \(y\). Also \(|A(P)|\le2m\).
+Let \(a(P)\) be the supremum of \(|\zeta(P)|\) over the signs,
+\(\beta\in\mathcal B\) and \(|t_u|\le2\). The preceding bounds give
+\[
+ \sup_y\sum_{P:\,y\in A(P)} a(P)e^{(b+1)|A(P)|}\le C_b\varepsilon.
+\]
+Thus for each polymer \(Q\) the same weighted sum over polymers
+incompatible with \(Q\) is bounded by \(|A(Q)|C_b\varepsilon\).
+For \(C_b\varepsilon\le1\), this verifies the cluster criterion
+for activity majorants \(a(P)e^{b|A(P)|}\) and charge \(|A(P)|\).
+
+By the pinned cluster estimate \cite[Theorem 1]{Ueltschi}, the
+absolute sum of connected logarithm terms whose generating union
+contains \(y\), weighted by \(e^{b|\bigcup_i A(P_i)|}\), is at most
+\(\sum_{P:\,y\in A(P)}a(P)e^{(b+1)|A(P)|}\).
+Indeed one pins a polymer containing \(y\) and uses
+\(e^{b|\bigcup_i A(P_i)|}\le\prod_i e^{b|A(P_i)|}\).
+Connectedness of the incompatibility graph makes the full
+generating union \(A=\bigcup_i A(P_i)\) a connected site set.
+We keep \(A\) as carrier even when some of its spins do not enter
+the resulting coefficient. The pinned estimate on the plane
+follows by exhaustion, since it is uniform for finite polymer
+families. It defines each plane coefficient by an absolutely
+convergent local sum. The corresponding torus series is the
+analytic logarithm of \(W_N\) obtained from the cluster expansion.
+
+Divide each unmarked cluster contribution equally among the sites
+of \(A\). This preserves the bound and the lattice symmetries.
+For \(S\ne\varnothing\), Cauchy extraction of \([t^S]\) costs at most
+one on the fixed polydisk. Any cluster with a nonzero extracted
+coefficient has a marked factor at each \(u\in S\), so it can be
+pinned at the prescribed marked site. When \(S=M_x\) its generating
+union satisfies \(|A|\ge d_\Lambda(0,x)+1\). Using the pinned
+estimate with \(b+1\) in place of \(b\) gives the additional
+exponential in \eqref{eq:bulk-direct-carrier}. Simultaneous reversal
+of the signs and the source labels leaves \(W_N\) invariant and
+gives the asserted parity, also termwise in the local formula.
+
+Subtracting the independent uniform-spin mean on each carrier costs
+at most a factor two in the list norm. The absolute sum of the
+removed marked constants is bounded by the same generating-carrier
+estimate. Odd singleton terms have zero uniform-spin mean. Finally,
+each original edge weight factors into
+\(e^{\beta_{\rm I}\sigma_e}e^{(\beta-\beta_{\rm I})\sigma_e}(1+d_e)\).
+Combining these identities with \(1+t_u\sigma_u=e^{t_u\sigma_u}\)
+and the amplitude expectation gives \eqref{eq:mic-partition}.
+\end{proof}
+
+Since \(n_1(A)\le9|A|\), a bound on the site-rooted sum with weight
+\(e^{b|A|}\) as in \eqref{eq:bulk-direct-carrier}, with \(b>9\),
+bounds the unmarked \(r=1\) norm and the \(r=1\) total norm of
+each marked list. For the unmarked norm, a root in \(B_1(y)\)
+costs at most nine site-rooted sums.
+
+\section{The analytic blocking map}
+\label{sec:blocking}
+
+We use the following spaces and local transformation from
+\cite[Sections 5.1--5.2]{BulkIsingRadialRG}. We give the
+estimates with the full carrier weight because the microscopic
+lists need not have finite range.
+
+\begin{definition}[One blocking step]
+\label{def:blocking-map}
+Let \(R=Lr\) with \(L\) an integer, and let
+\(M=\lceil(\log L)^2\rceil\). A carrier is short if \(n_r(A)\le M\).
+For sufficiently large \(L\), a short carrier is contained in
+the interior of the cutting square \(B_R(z)\) about any
+\(z\in A\). Denote by \(P_{R,z}\) the pure critical Ising
+conditional expectation given the spins at sites \(y\) with
+\(d_\infty(y,z)\ge R\). For tests supported in \(B_R(z)\),
+use the finite-volume kernel in \(\{y:d_\infty(y,z)<R\}\)
+with the prescribed spins on \(\{y:d_\infty(y,z)=R\}\).
+This specifies the kernel at every boundary configuration and
+agrees in the plane and on a torus whenever the square lifts
+isometrically.
+
+For finite input lists, expand \(\exp(\operatorname{ev}(h))\)
+in ordered occurrences of input list terms, with repetitions
+allowed. For an occurrence of carrier \(A\), put \(V_R(A)=A+B_{2R}\).
+Join two occurrences if their \(V_R\) neighborhoods intersect.
+In each monomial apply \(P_{R,z}\) to every isolated short
+occurrence, leaving all other factors as they are. Take the
+logarithm of the transformed series and use \(\pi\) term by term.
+A connected coefficient with at least two occurrences is
+assigned to the generating carrier \(Q=\bigcup_i V_R(A_i)\).
+Divide an unmarked coefficient equally among its input anchors,
+counting multiplicity. For a single occurrence use carrier
+\(B_R(z)\) if it was averaged, and \(A\) otherwise, with the
+original anchor in either case. For its estimates retain the
+auxiliary generating carrier \(Q=V_R(A)\). The resulting
+unmarked list is \(\mathcal R_{r,R}(h)\); on the torus the sum
+of removed constants is \(\mathcal C_{r,R}(h)\).
+
+In the marked version use the square-free variables
+\(t_\ell\), so \(t_\ell^2=0\) and \(t^S=\prod_{\ell\in S}t_\ell\).
+Root each output of type \(S\) at its prescribed anchor.
+For \(p=1,2\) and input lists \(U_i\) with nonempty pairwise
+disjoint label sets \(S_i\), let
+\(\mathcal D^{(p)}_{r,R}(h)[U_1,\dots,U_p]\) be the coefficient
+of \(t^{\bigcup_i S_i}\) obtained with input
+\(h+\sum_i t^{S_i}U_i\). This is the mixed \(p\)-input derivative
+of the transformation and takes values in pairs
+\((\text{output list},\text{new scalar})\), with projections
+\(\operatorname{pr}_{\rm list}\) and \(\operatorname{pr}_{\rm sc}\).
+On pairs use the norm
+\(\|(U,c)\|_{R,\bullet}=\|U\|_{R,\bullet}+|c|\).
+An input scalar is independent of spins and is carried outside
+the map.
+\end{definition}
+
+\begin{lemma}[Geometry of the carrier weights]
+\label{lem:carrier-geometry}
+There are absolute \(c,C>0\) such that, for every connected
+carrier \(A\),
+\[
+ n_r(A)\ge c(1+\operatorname{diam}(A)/r),\qquad
+ n_R(V_R(A))\le C(1+n_r(A)/L).
+\]
+Moreover \(A+B_{4R}\) is covered by at most
+\(CL^2n_r(A)\) balls of radius \(r\).
+The same bounds hold with periodic distances for \(R\le\vartheta N\),
+where \(\vartheta>0\) is an absolute constant.
+\end{lemma}
+\begin{proof}
+Along a path joining two sites at distance \(\operatorname{diam}(A)\),
+select successive sites at distances from the starting point
+spaced by \(3r\). The disjoint \(r\)-balls centered there lie in
+\(A+B_r\), which proves the first bound. In particular every
+short carrier lies in \(B_{CMr}(z)\) for each \(z\in A\), and
+\(CMr<R\) for \(L\) sufficiently large.
+
+For the second bound, choose a maximal \(10R\)-separated subset
+of \(A\). Its \(13R\)-balls cover \(A+B_{3R}\). If there is
+more than one center, a path in \(A\) starting at each center
+and heading toward another leaves the \(R\)-ball about the
+first center. Its initial part up to that radius has an
+\(r\)-neighborhood of size at least \(cRr\), by the same
+disjoint-ball argument. These neighborhoods lie in disjoint
+\(2R\)-balls and are contained in \(A+B_r\). The number of
+centers is thus at most \(C(1+|A+B_r|/(Rr))\), proving the
+bound. For the last assertion choose instead a maximal
+\(r\)-separated subset of \(A\). The disjoint balls of radius
+\(\lfloor r/2\rfloor\) bound the number of its centers by
+\(Cn_r(A)\). The \(B_{4R+r}\) ball about each center costs
+at most \(CL^2\) balls of radius \(r\).
+All constructions use the local cardinality bounds for
+balls, which hold on the stated periodic scales.
+\end{proof}
+
+\begin{proposition}[Blocking with a diameter reserve]
+\label{prop:blocking}
+Fix \(L\) sufficiently large. There are \(\eta_L,C_L,c>0\),
+uniform in \(r\) and in tori with \(R\le\vartheta N\), such
+that the blocking map is analytic for \(\|h\|_r<\eta_L\).
+Writing \(T_{r,R}=\mathrm D\mathcal R_{r,R}(0)\), one has
+\begin{equation}
+ \|\mathcal R_{r,R}(h)-T_{r,R}h\|_R\le C_L\|h\|_r^2,
+ \qquad
+ \|\mathrm D\mathcal R_{r,R}(h)-T_{r,R}\|\le C_L\|h\|_r .
+ \label{eq:blocking-quadratic}
+\end{equation}
+The linear map \(T_{r,R}\) averages short carriers, keeps long
+carriers and projects by \(\pi\). The same linear rule applies
+to \(T^\bullet_{r,R}=\operatorname{pr}_{\rm list}
+\mathcal D^{(1)}_{r,R}(0)\), with marked anchors.
+
+Superscript \(\ge D\) means the sum of the generating terms
+with \(\operatorname{diam}(Q)\ge D\), retained before scalar
+extraction. For \(D\ge0\), \(p\in\{1,2\}\) and
+\(\mathbf U=(U_1,\dots,U_p)\), the bounds are
+\begin{equation}
+\begin{aligned}
+ \|\mathcal R_{r,R}^{\ge D}(h)\|_R
+    &\le C_L e^{-cD/R}\|h\|_r,\\
+ \|\mathcal D^{(p),\ge D}_{r,R}(h)[\mathbf U]\|_{R,\bullet}
+    &\le C_L e^{-cD/R}\prod_i\|U_i\|_{r,\bullet},\\
+ \|(\mathcal D^{(p),\ge D}_{r,R}(h)-
+       \mathcal D^{(p),\ge D}_{r,R}(0))[\mathbf U]\|_{R,\bullet}
+    &\le C_L e^{-cD/R}\|h\|_r\prod_i\|U_i\|_{r,\bullet}.
+\end{aligned}
+\label{eq:blocking-diameter}
+\end{equation}
+The right side of the first bound also bounds the rooted sum
+before projection.
+The marked estimates include the new scalar.
+
+The map preserves translation invariance, square symmetry and
+spin parity in the corresponding sectors. On each torus its
+exact identity is
+\begin{equation}
+ \mu_{{\rm I},N}\bigl(e^{\operatorname{ev}(h)}\bigr)
+    =e^{\mathcal C_{r,R}(h)}
+      \mu_{{\rm I},N}\bigl(e^{\operatorname{ev}(\mathcal R_{r,R}(h))}\bigr),
+ \label{eq:blocking-partition}
+\end{equation}
+The identity also holds in the square-free algebra with the
+corresponding marked coefficients and scalars. The proposition
+applies at \(r=1,\ L=r_0\) for a fixed sufficiently large \(r_0\).
+\end{proposition}
+\begin{proof}
+The interiors of the replaced cutting squares in a monomial
+are disjoint, and the remaining factors are measurable outside
+their union. The nearest-neighbor Markov property gives the
+same integral before and after the replacements. The symmetry
+statements follow from the local rule, the anchor averaging
+and the uniform-spin projection. Terms whose generating carrier
+lifts isometrically have the same local rule in plane and torus.
+
+We estimate the logarithm before projection. For fixed labeled
+occurrences \(1,\dots,m\), let \(\mathcal G\) be their overlap
+graph. Use auxiliary variables \(s_i^2=0\). The transformed
+coefficient for any subset of occurrences is a product over
+the components of its induced graph. The transformed series in
+the \(s_i\) is therefore the hard-core polynomial of connected
+subsets of \(\mathcal G\). A singleton activity contains its
+linear image and any larger connected activity is the original
+product. The logarithm coefficient of \(\prod_i s_i\) is a
+sum over partitions into connected blocks. The coefficient of
+a partition is the alternating sum over connected edge sets of
+its incompatibility graph. This follows by expanding the
+hard-core constraint into edge factors and grouping a graph
+by its connected components. The sum vanishes for a disconnected
+graph and is bounded in absolute value by its number of
+spanning trees. To see the bound, fix an edge ordering and
+group the connected edge sets by their Kruskal spanning tree.
+For each tree, an eligible extra edge is one larger than every
+edge on its tree path. The edge sets in that class consist of
+the tree and any subset of its eligible edges, so their
+alternating sum has magnitude at most one.
+
+For each block partition and quotient tree, choose one internal
+tree in each block and one contact edge for each quotient edge,
+using fixed deterministic choices. Their union is a spanning
+tree of \(\mathcal G\), with edges designated internal or
+external. These designations recover the partition and quotient
+tree. Writing \(\tau(\mathcal G)\) for the number of spanning
+trees, the absolute coefficient is consequently bounded by
+\[
+ 2^{m-1}\tau(\mathcal G)\prod_{i=1}^m\|f_i\|_\infty ,
+\]
+where \(f_i\) is the function of occurrence \(i\).
+In particular the logarithmic coefficient has connected
+generating carrier \(Q\).
+
+By Lemma~\ref{lem:carrier-geometry} and subadditivity of
+neighborhood cardinality,
+\[
+ 2n_R(Q)\le Cm+(C/L)\sum_i n_r(A_i).
+\]
+Take \(L\) large enough that \(C/L\le1/2\).
+For an unmarked output rooted at a ball \(B_R(y)\), one
+occurrence meets \(B_{3R}(y)\), which costs \(O(L^2)\) input
+root balls. For a marked output, root the tree at an input
+occurrence of one prescribed mark and sum it in its total
+marked norm. A child of an occurrence of carrier \(A\) meets
+\(A+B_{4R}\), so summing over the child costs at most
+\(CL^2n_r(A)\) input root balls. Additional marked inputs
+can be summed in their total marked norms. Inducting from
+leaves toward the root gives \(k\) such covering factors at
+a vertex with \(k\) children. The reserve
+\(e^{n_r(A)/2}\) absorbs \(n_r(A)^k\) at cost \(2^k k!\).
+Thus the tree bound with weight \(e^{2n_R(Q)}\) costs at most
+\(C_L^m\prod_i k_i!\) times the product of the input norms.
+The factorials count the orderings of children. The number of
+ordered rooted shapes is at most \(4^{m-1}\) and there are at
+most \(m!\) labelings, canceled by the exponential factorial.
+This yields a bound \(C_L^m\) times the product of input norms
+for the homogeneous degree-\(m\) contribution, including
+the order-one rule.
+
+Every actual output carrier is contained in \(Q\). Since \(Q\)
+is connected, \(n_R(Q)\ge cD/R\) on the diameter restriction,
+by Lemma~\ref{lem:carrier-geometry}. One factor \(e^{n_R(Q)}\)
+therefore pays for the output weight and the other yields
+\(e^{-cD/R}\). This estimate is made before \(\pi\), which costs
+at most two in sup norm, and bounds extracted constants as well.
+Distinguishing \(p\) inputs in degree \(m\) costs at most \(m^p\).
+For a difference of derivatives at \(h\) and zero the degree
+is at least \(p+1\), so there is at least one factor \(\|h\|_r\).
+Summing the resulting series on a sufficiently small ball
+proves \eqref{eq:blocking-quadratic} and \eqref{eq:blocking-diameter}.
+
+For finite lists the monomial identity and the logarithmic
+identity hold first as power-series identities. Absolute
+convergence gives the analytic identities on the stated
+ball. Rooted estimates define the plane coefficients locally
+and permit removal of carrier truncations on each torus, where
+the total sum is bounded by finitely many rooted sums. This
+gives \eqref{eq:blocking-partition}, including its marked
+coefficients. Only geometry and the reference Markov property
+enter this proof, including for the preliminary step.
+\end{proof}
+
+\section{Linear contraction and thermal tuning}
+\label{sec:tuning}
+
+For integers \(1\le r<R\) and an anchor \(z\), the cutting square
+and conditional kernel are those of Section~\ref{sec:blocking}.
+If \(F\) is supported in the square about \(z\) of radius \(s<R\), define
+\[
+ d_{R,z}(F)=\mu^+_{4R,z}(F)-\mu_{\rm I}(F),
+\]
+where \(\mu^+_{4R,z}\) is the nearest-neighbor critical Ising law in
+the lattice disk of radius \(4R\) about \(z\), with plus boundary
+condition. Put \(e_z=\frac14\sum_{w:\,w\sim z}\sigma_z\sigma_w\).
+Let \(v_r^{\rm th}\) denote the homogeneous list with one coefficient
+\(r^{-1}\pi P_{r,z}e_z\) on \(B_r(z)\) at each \(z\). Let \(v_r^u\)
+denote the singleton list anchored at \(u\) with coefficient
+\(r^{1/8}P_{r,u}\sigma_u\) on \(B_r(u)\).
+
+\begin{lemma}[Pure reference estimates]\label{lem:pure-reference}
+For each sufficiently large fixed ratio \(R/s\) there is a lower
+threshold on \(s\) such that the following estimates hold uniformly
+in \(z\) and in the bounded function \(F\) on \(B_s(z)\):
+\begin{equation}
+ |d_{R,z}(F)|\le C(s/R)^d\|F\|_\infty,\qquad
+ \|P_{R,z}F-\mu_{\rm I}(F)\|_\infty
+   \le C|d_{R,z}(F)|+C(s/R)^p\|F\|_\infty .
+ \label{eq:reference-averaging}
+\end{equation}
+The pairs \((d,p)\) are \((1,3)\) for spin-flip-even tests invariant
+under right-angle rotations about \(z\), \((1/8,9/8)\) for
+spin-flip-odd tests, and \((1,2)\) for arbitrary spin-flip-even tests.
+The constants are uniform over sufficiently large fixed ratios.
+
+For all sufficiently large \(r\), \(\|v_r^{\rm th}\|_r\) and
+\(\|v_r^u\|_{r,\bullet}\) are bounded above and below by positive
+constants. For sufficiently large \(R/r\),
+\begin{align}
+ |d_{R,z}(r^{-1}\pi P_{r,z}e_z)|
+   &\asymp r^{-2}(r/R), \label{eq:thermal-calibration}\\
+ |d_{R,u}(r^{1/8}P_{r,u}\sigma_u)|
+   &\asymp (r/R)^{1/8}. \label{eq:spin-calibration}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Equation~\eqref{eq:reference-averaging} is the pure Ising estimate of
+\cite[Proposition 4.1]{BulkIsingRadialRG}. It extends to complex \(F\)
+by applying it to real and imaginary parts. The distinguished-field
+bounds and calibrations are \cite[Lemma 5.3]{BulkIsingRadialRG}.
+For the thermal norm, the single coefficient has size comparable
+to \(r^{-2}\), with \(O(r^2)\) anchors in a rooted sum and weights
+bounded above and below on \(B_r(z)\). The same weights in the
+marked norm give the bound for \(v_r^u\).
+\end{proof}
+
+Use \(T_{r,R}\) and \(T^\bullet_{r,R}\) for the pure linear maps on
+backgrounds and marked lists of Proposition~\ref{prop:blocking}.
+
+\begin{proposition}[Linear estimates]\label{prop:linear}
+Fix \(0<\rho<1\). There is a sufficiently large integer \(L\), and
+then an integer \(r_0\), such that for \(r\ge r_0\), \(R=Lr\), the
+following assertions hold.
+\begin{enumerate}
+\item In the homogeneous, right-angle-invariant, even background
+space, \(T_{r,R}v_r^{\rm th}=Lv_R^{\rm th}\). There are real
+bounded complements to the thermal lines such that the matrix
+of \(T_{r,R}\) in the line and complement coordinates is
+\(\left(\begin{smallmatrix}L&B^{\rm th}_{r,R}\\0&D^{\rm th}_{r,R}\end{smallmatrix}\right)\),
+with \(\|B^{\rm th}_{r,R}\|\le C_L\) and
+\(\|D^{\rm th}_{r,R}\|\le\rho\).
+\item On singleton odd lists anchored at \(u\),
+\(L^{1/8}T^\bullet_{r,R}v_r^u=v_R^u\). The corresponding matrix of
+\(L^{1/8}T^\bullet_{r,R}\) is
+\(\left(\begin{smallmatrix}1&B^{\rm sp}_{r,R}\\0&D^{\rm sp}_{r,R}\end{smallmatrix}\right)\)
+with \(\|B^{\rm sp}_{r,R}\|\le C_L\) and \(\|D^{\rm sp}_{r,R}\|\le\rho\).
+\item On singleton even lists, the unscaled \(T^\bullet_{r,R}\)
+has norm at most \(\rho\). This last assertion also holds on
+\(\mathbb T_N\) when \(R\le\vartheta N\) for a sufficiently small
+fixed \(\vartheta>0\).
+\end{enumerate}
+The line and complement coordinates have norms uniformly equivalent
+to the corresponding list norms.
+\end{proposition}
+
+\begin{proof}
+Set \(M=\lceil(\log L)^2\rceil\). By the carrier geometry in
+Lemma~\ref{lem:carrier-geometry}, all short terms at \(z\) are
+supported on \(B_s(z)\) with \(s=CMr\) for an absolute integer \(C\).
+For the unchanged long terms, the comparison
+\(n_R(A)\le C+(C/L)n_r(A)\) gives an extra \(e^{-cM}\).
+In the background norm a root square at scale \(R\) can be covered
+by \(O(L^2)\) root squares at scale \(r\). The long operators
+therefore cost \(CL^2e^{-cM}\) in the background norm and
+\(Ce^{-cM}\) in the marked norm, before any normalization.
+
+For a background list \(h\), sum the short coefficients anchored at
+\(z\) into \(F_z\). The rooted norm counts all anchors in a radius-\(r\)
+square. By translation invariance their total weighted masses are
+equal, so \(\|F_z\|_\infty\le C r^{-2}\|h\|_r\).
+The rotation and spin-flip symmetries pass to \(F_z\).
+By \eqref{eq:reference-averaging} and \eqref{eq:thermal-calibration}
+one may subtract \(\alpha r^{-1}\pi P_{r,z}e_z\) to cancel its
+disk response, where \(\alpha\) is independent of \(z\) and
+\(|\alpha|\le CM\|h\|_r\).
+The adjusted function has norm at most \(C(1+M)r^{-2}\|h\|_r\).
+The projection \(\pi\) kills constants. Using \(p=3\) in
+\eqref{eq:reference-averaging}, its projected image has sup norm at
+most \(C(M/L)^3(1+M)r^{-2}\|h\|_r\).
+The \(O(R^2)\) output anchors have bounded weights on their squares,
+giving a background list bound \(CM^4 L^{-1}\|h\|_r\).
+
+For a singleton odd list \(U\), the short sum at \(u\) has norm at
+most \(\|U\|_{r,\bullet}\). The cancellation now subtracts a multiple
+of \(v_r^u\) of size at most \(CM^{1/8}\|U\|_{r,\bullet}\), by
+\eqref{eq:spin-calibration}. With \(p=9/8\), multiplication by
+\(L^{1/8}\) gives a marked bound
+\[
+ C L^{1/8}(M/L)^{9/8}(1+M^{1/8})\|U\|_{r,\bullet}
+ \le C M^{5/4} L^{-1}\|U\|_{r,\bullet}.
+\]
+Each distinguished carrier is short. The tower property gives the
+claimed multipliers on the two lines. The preceding cancellation
+bounds hold for every input representative modulo its line, and
+therefore bound the quotient operator norms after adding the long
+terms. Choose a bounded real dual functional equal to one on each
+distinguished vector and complexify it. The calibration guarantees
+uniform bounds for the resulting projections. Taking the kernels
+as complements gives the stated triangular matrices. The shear
+bounds follow from boundedness of the full operators, and the
+transverse bounds follow from the quotient estimates upon increasing \(L\).
+
+For the unscaled even mark, \((d,p)=(1,2)\) in
+\eqref{eq:reference-averaging} gives a short operator bound
+\(CM/L\) after projecting off constants, without any response
+subtraction. Adding the long bound proves contraction. A short
+cutting square at \(R\le\vartheta N\) lifts isometrically, and its
+conditional kernel is the same as in the plane by the nearest-neighbor
+Markov property. Thus the same estimate holds on the torus. Choose
+\(L\) first so the operator estimates are below \(\rho\), then \(r_0\)
+to meet the thresholds in Lemma~\ref{lem:pure-reference}.
+\end{proof}
+
+Fix these integers and choose \(\rho<\gamma<1\). Let
+\(r_j=r_0L^j\) for \(j\ge0\). The preliminary map is
+\(\mathcal R_{1,r_0}\) and each subsequent step uses
+\(\mathcal R_{r_j,r_{j+1}}\). The preliminary bounds follow from
+Proposition~\ref{prop:blocking} with ratio \(r_0\).
+
+\begin{proposition}[Massless tuning]\label{prop:tuning}
+For all sufficiently large \(g\) there is
+\(\beta_*(g)=\beta_{\rm I}+O(\varepsilon)\) such that the plane lists
+obtained from the microscopic background at \(\beta=\beta_*(g)\) satisfy
+\begin{equation}
+ \|h_j\|_{r_j}\le C\varepsilon\gamma^j\qquad(j\ge0).
+ \label{eq:decay-background}
+\end{equation}
+The construction selects a unique root of the decaying-graph
+equation on an interval \(|\beta-\beta_{\rm I}|\le C_0\varepsilon\)
+with \(C_0\) fixed.
+\end{proposition}
+
+\begin{proof}
+Use the complements of Proposition~\ref{prop:linear} and write
+\(h_j=\tau_jv_{r_j}^{\rm th}+w_j\). The recursion takes the form
+\[
+ \tau_{j+1}=L\tau_j+B_j^{\rm th}w_j+a_j(\tau_j,w_j),\qquad
+ w_{j+1}=D_j^{\rm th}w_j+b_j(\tau_j,w_j).
+\]
+Here \(B_j^{\rm th}=B^{\rm th}_{r_j,r_{j+1}}\), and similarly for
+\(D_j^{\rm th}\). The remainders vanish quadratically, and their
+derivatives are bounded by \(C_L(|\tau_j|+\|w_j\|_{r_j})\), by
+Proposition~\ref{prop:blocking}. Write
+\(\Phi_{j,i}=D^{\rm th}_{j-1}\cdots D^{\rm th}_i\) for \(j>i\) and
+\(\Phi_{i,i}=\mathrm{Id}\).
+For given remainders \(a_i,b_i\) the decaying solution with prescribed
+\(w_0\) is
+\begin{align*}
+ w_j&=\Phi_{j,0}w_0+\sum_{i<j}\Phi_{j,i+1}b_i,\\
+ \tau_j&=-\sum_{i\ge j} L^{j-i-1}(B_i^{\rm th}w_i+a_i).
+\end{align*}
+In the norm \(\sup_j\gamma^{-j}(|\tau_j|+\|w_j\|_{r_j})\),
+the solution operator is bounded by the geometric sums with ratios
+\(\rho/\gamma\) and \(\gamma/L\). Substituting the nonlinear
+remainders defines a map on the sequence space. On a ball of radius
+\(A\|w_0\|_{r_0}\) it is a contraction into the ball for fixed
+large \(A\) and sufficiently small \(\|w_0\|_{r_0}\), by the
+quadratic and derivative bounds. It yields an analytic graph
+\(\tau_0=\psi(w_0)\) and a trajectory of norm \(O(\|w_0\|_{r_0})\).
+Analyticity follows from the locally uniform contraction iterates in
+the complex sequence space. The graph and trajectory are real for
+real \(w_0\).
+
+Put \(\Delta\beta=\beta-\beta_{\rm I}\). The sum of the microscopic
+temperature coefficients at anchor \(z\) is \(2\Delta\beta\,e_z\).
+Each temperature carrier is short. They have the same output
+carrier at \(z\), so their preliminary linear image there is
+\(2\Delta\beta\,\pi P_{r_0,z}e_z\).
+The amplitude contribution to the microscopic norm and to its
+\(\beta\)-derivative is \(O(\varepsilon)\) on a smaller fixed disk,
+by Proposition~\ref{prop:microscopic-input} and Cauchy's formula.
+The preliminary operator estimate gives
+\[
+ h_0(\beta,g)=2r_0\Delta\beta\,v_{r_0}^{\rm th}
+       +O_{\|\cdot\|_{r_0}}((\Delta\beta)^2+\varepsilon),\qquad
+ \partial_\beta h_0=2r_0 v_{r_0}^{\rm th}
+       +O_{\|\cdot\|_{r_0}}(|\Delta\beta|+\varepsilon).
+\]
+It follows that \(f(\beta)=\tau_0(\beta,g)-\psi(w_0(\beta,g))\)
+satisfies \(f(\beta)=2r_0\Delta\beta+O((\Delta\beta)^2+\varepsilon)\) and
+\(f'(\beta)=2r_0+O(|\Delta\beta|+\varepsilon)\). For a fixed sufficiently
+large \(C_0\), \(f\) changes sign between \(\Delta\beta=\pm C_0\varepsilon\)
+and has positive derivative on this interval. At its root
+\(\|w_0\|_{r_0}=O(\varepsilon)\), so the decaying graph estimate
+proves \eqref{eq:decay-background}.
+\end{proof}
+
+\section{Periodic backgrounds}
+\label{sec:periodic}
+
+Fix a small numerical \(\kappa>0\). The projection \(\Pi_N\)
+of a plane list keeps carriers of max-norm diameter less than
+\(\kappa N\) and projects their sites to \(\mathbb T_N\).
+For a homogeneous list use one representative of each anchor
+modulo \(N\). For a rooted marked list, the chosen lift of its marked
+anchor fixes the lifts of the retained carriers. In either case the
+projection is bounded in the list norms for \(r\le\vartheta N\)
+with \(\vartheta\) sufficiently small, by lifting all retained
+carriers meeting a fixed norm root box to the chart around that box.
+
+\begin{proposition}[Periodic comparison]\label{prop:periodic}
+Let \(H_j^N\) denote the torus background at \(\beta_*(g)\) after
+the preliminary step and \(j\) subsequent steps. For a sufficiently
+small \(\vartheta>0\), for all \(j\) with \(r_j\le\vartheta N\),
+\begin{equation}
+ E_j:=\|H_j^N-\Pi_Nh_j\|_{r_j}
+ \le C\varepsilon\gamma^j e^{-cN/r_j},\qquad
+ \|H_j^N\|_{r_j}\le C\varepsilon\gamma^j.
+ \label{eq:periodic-background}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+At the microscopic scale, clusters whose carriers fit the projected
+chart lift uniquely after their anchors are fixed. Their activities
+and combinatorial factors coincide. The other connected carriers
+have at least \(cN\) sites, so the size-weight reserve in
+Proposition~\ref{prop:microscopic-input} bounds the discrepancy by
+\(C\varepsilon e^{-cN}\) in the scale-one norm.
+The temperature term has identical local coefficients. At the
+preliminary step, the Lipschitz estimate transports this discrepancy.
+All new terms that fail chart comparison have generating diameter
+at least \(cN\), so the tail estimate of Proposition~\ref{prop:blocking}
+gives \(E_0\le C\varepsilon e^{-cN/r_0}\).
+
+At a subsequent step compare the projected plane output with the
+torus output from the projected plane input. On a generating union
+of diameter less than \(cN\), for \(c\) sufficiently small relative
+to \(\kappa\), all input and output carriers are retained, the cutting
+kernels agree, and the same uniform-spin means are subtracted.
+The two coefficient constructions therefore agree on these terms.
+The remaining terms, including winding unions, have generating
+diameter at least \(cN\). Their summed norm is at most
+\(C\|h_j\|_{r_j}e^{-cN/r_{j+1}}\). Changing the torus input
+from \(\Pi_Nh_j\) to \(H_j^N\) costs \(K E_j\) as long as both lie
+in the analytic ball. Thus
+\[
+ E_{j+1}\le K E_j+C\varepsilon\gamma^j e^{-cN/r_{j+1}} .
+\]
+For \(X=N/r_j\) direct iteration gives
+\[
+ \frac{E_j}{\varepsilon\gamma^j}
+ \le C(K/\gamma)^j e^{-cX L^j}
+       +\frac C\gamma\sum_{m=0}^{j-1}(K/\gamma)^m e^{-cX L^m}
+ \le C' e^{-c' X}.
+\]
+The last inequality holds uniformly for \(X\ge\vartheta^{-1}\) since
+\(L^m\) grows geometrically. Combining this estimate with
+\eqref{eq:decay-background} ensures that the torus input stays in
+the analytic ball for sufficiently large \(g\), closing the induction.
+\end{proof}
+
+\section{The two marked sources}
+\label{sec:two-sources}
+
+Fix the tuned inverse temperature \(\beta_*(g)\) from
+Proposition~\ref{prop:tuning} and two distinct sites \(0,x\).
+For \(\varnothing\ne S\subseteq M_x\), let \(U_j^S\)
+and \(c_j^S\) be the canonical list and the accumulated scalar
+in the coefficient of \(t^S\) in the plane flow at scale \(r_j\).
+Normalize both by \(r_j^{|S|/8}\).
+Thus the preliminary step includes multiplication by
+\(r_0^{|S|/8}\), and the step from \(j\) to \(j+1\) includes
+multiplication by \(L^{|S|/8}\).
+Write \(U_{N,j}^S,c_{N,j}^S\) for the periodic counterparts.
+For superscripts we abbreviate \(\{u\}\) by \(u\) and
+\(\{0,x\}\) by \(0x\). For marked lists set
+\(\mathcal D_j^{(p)}=\mathcal D_{r_j,r_{j+1}}^{(p)}\).
+In the following estimates, the constants may depend on the
+fixed blocking parameters.
+
+\begin{lemma}[Periodic comparison of marked coefficients]
+\label{lem:periodic-marks}
+For each fixed \(x\) and \(j\), as \(N\to\infty\),
+\[
+ \sum_{\varnothing\ne S\subseteq M_x}
+ \left(\|U_{N,j}^S-\Pi_N U_j^S\|_{r_j,\bullet}
+              +|c_{N,j}^S-c_j^S|\right)\longrightarrow0 .
+\]
+Here \(\Pi_N\) uses the carrier cutoff of
+Section~\ref{sec:periodic} and the fixed marked anchor.
+The plane lists omitted by \(\Pi_N\) have marked norm tending
+to zero for each such \(x,j\).
+\end{lemma}
+
+\begin{proof}
+For fixed \(x\) and large \(N\), the marked sites have unique lifts
+in any retained chart containing them and based at a prescribed
+marked anchor. Microscopic coefficients agree on these charts by
+lifting each amplitude cluster. The errors in the microscopic
+marked list and scalar have norm tending to zero by the weighted
+carrier bound of Proposition~\ref{prop:microscopic-input}.
+Indeed the generating support of an exceptional cluster has
+diameter at least \(cN\), and the weight is applied before
+extracting its scalar.
+
+Write \(\Delta_{j,N}\) for the sum in the lemma. The preliminary
+map at \(r=1\), \(R=r_0\) has bounded operator norms by
+Proposition~\ref{prop:blocking}. The microscopic background
+discrepancy tends to zero, and exceptional preliminary test unions
+have diameter at least \(cN\). The diameter estimate and the
+microscopic marked convergence give \(\Delta_{0,N}\to0\).
+For subsequent steps, first compare the maps on projected lists.
+The kernels, the projections off constants and the coefficient rules agree
+on test unions that lift into the chart. Every exceptional
+connected test union has diameter at least \(cN\), provided
+\(r_{j+1}\le\vartheta N\). The diameter estimate in
+Proposition~\ref{prop:blocking} therefore bounds the corresponding
+list and scalar errors. On bounded sets of marked inputs,
+the one- and two-input operators and their background differences
+give
+\[
+ \Delta_{j+1,N}\le
+ C_j\bigl(\Delta_{j,N}+E_j+e^{-cN/r_{j+1}}\bigr),
+ \qquad E_j=\|H_j^N-\Pi_N h_j\|_{r_j}.
+\]
+The marked norms are bounded for each fixed number of steps
+by the same operator estimates, including the fixed normalization
+factors. Proposition~\ref{prop:periodic} gives \(E_j\to0\) at
+fixed \(j\), so the recurrence proves the comparison. The
+omitted plane tails tend to zero by absolute summability
+in the marked norm.
+\end{proof}
+
+Write \(v_j^u=v_{r_j}^u\) for the pure spin list of
+Section~\ref{sec:tuning}.
+Use \(\rho<\gamma<1\) from Section~\ref{sec:tuning} and fix
+\(\theta\in(\gamma,1)\).
+
+\begin{proposition}[One-source flow]
+\label{prop:one-source}
+There is a real
+\(Z_\phi(g)=1+O(\varepsilon)\) such that
+\begin{equation}
+ U_j^u=Z_\phi(g)v_j^u+\eta_j^u,\qquad
+ \|\eta_j^u\|_{r_j,\bullet}\le C\varepsilon\theta^j .
+ \label{eq:bulk-direct-one-mark-flow}
+\end{equation}
+The factor \(Z_\phi(g)\) is independent of \(u\).
+The one-source scalars vanish at every scale, on the plane and
+the torus.
+\end{proposition}
+
+\begin{proof}
+At zero background the preliminary one-input operator sends the
+bare spin list to \(v_0^u\) after normalization. At the tuned
+temperature the microscopic background norm is \(O(\varepsilon)\).
+The physical source differs from the bare spin by \(O(\varepsilon)\)
+in the microscopic marked norm by
+Proposition~\ref{prop:microscopic-input}. The bounded one-input
+operator and its \(O(\varepsilon)\) difference from the operator
+at zero background give
+\(\|U_0^u-v_0^u\|_{r_0,\bullet}\le C\varepsilon\).
+
+Let \(A_j=L^{1/8}\operatorname{pr}_{\mathrm{list}}\mathcal D_j^{(1)}(0)\).
+Write \(U_j^u=\alpha_jv_j^u+w_j^u\) in the spin-line
+splitting from Proposition~\ref{prop:linear}.
+In these coordinates \(A_j\) has blocks
+\[
+ A_j=
+ \begin{pmatrix}1&B_j^{\rm sp}\\0&D_j^{\rm sp}\end{pmatrix},
+ \qquad \|B_j^{\rm sp}\|\le C,\quad
+ \|D_j^{\rm sp}\|\le\rho .
+\]
+The longitudinal multiplier is one by nested conditional
+expectation. The true update is \(U_{j+1}^u=(A_j+J_j)U_j^u\),
+with
+\[
+ \|J_j\|\le C\|h_j\|_{r_j}\le C\varepsilon\gamma^j
+\]
+by Propositions~\ref{prop:blocking} and \ref{prop:tuning}.
+The pure products have norm at most \(C_0\) for every
+consecutive interval of scales. The transverse block is bounded
+by the corresponding power of \(\rho\), and the off-diagonal
+block by \(C\sum_{m\ge0}\rho^m\). Expanding each perturbed
+product by the positions of the \(J_i\) gives the bound
+\(C_0\prod_{i\ge0}(1+C_0\|J_i\|)\).
+In particular \(\|U_j^u\|_{r_j,\bullet}\le C\).
+
+The transverse recurrence and the preliminary estimate give
+\[
+ \|w_j^u\|_{r_j,\bullet}
+ \le C\varepsilon\rho^j+
+     C\varepsilon\sum_{i=0}^{j-1}\rho^{j-1-i}\gamma^i
+ \le C_\theta\varepsilon\theta^j.
+\]
+The longitudinal increments satisfy
+\(|\alpha_{j+1}-\alpha_j|\le
+C(\|w_j^u\|_{r_j,\bullet}+\varepsilon\gamma^j)\).
+Hence \(\alpha_j\) converges and its tail is
+\(O(\varepsilon\theta^j)\). Its limit is \(1+O(\varepsilon)\)
+because \(\alpha_0=1+O(\varepsilon)\).
+Setting the other label to zero commutes with the microscopic
+integral and each blocking map. Thus the one-source flow depends
+only on \(u\). Choose the complements by translation from one
+site. Translation invariance then gives the same limit for
+all \(u\). The uniform norm bound on \(v_j^u\) gives
+\eqref{eq:bulk-direct-one-mark-flow}. Finally the background is
+even, the one-source input is odd, and all kernels and the
+constant projection commute with spin flip. This makes each
+one-source scalar increment, including the microscopic one, zero.
+\end{proof}
+
+\begin{proposition}[Mixed coefficient up to separation]
+\label{prop:mixed-source}
+Choose \(b_0>0\) sufficiently small and suppose
+\(b_0|x|\ge r_0\). Let \(k\) be the last index with
+\(r_k\le b_0|x|\), so that
+\begin{equation}
+ b_0|x|/L<r_k\le b_0|x|.
+ \label{eq:separation-scale}
+\end{equation}
+Then
+\begin{equation}
+ \|U_k^{0x}\|_{r_k,\bullet}+|c_k^{0x}|
+ \le C\varepsilon\theta^k
+ \label{eq:mixed-bound}
+\end{equation}
+with the \(\theta\) of Proposition~\ref{prop:one-source}.
+\end{proposition}
+
+\begin{proof}
+Set \(D=|x|\) and \(B_j=\|U_j^{0x}\|_{r_j,\bullet}+|c_j^{0x}|\).
+Take \(b_0\) so small that the protective neighborhoods of the two
+pure single-spin carriers are disjoint at each step up to \(k\),
+including the preliminary step. In a step ending at \(r_{j+1}\)
+those neighborhoods have radii at most \(r_j+2r_{j+1}\).
+Their disjointness follows from
+\(\|x\|_\infty\ge D/\sqrt2\) and \(r_{j+1}\le b_0D\).
+
+At the preliminary step the microscopic mixed coefficient and
+its scalar have norm \(O(\varepsilon e^{-cD})\).
+The zero-background bilinear operator on the two bare spins
+vanishes by the disjoint neighborhoods. Every remaining
+connected term contains a background occurrence or a microscopic
+one-source correction and has a generating test union containing
+both sites. Proposition~\ref{prop:blocking}, used with
+\(r=1\) and \(R=r_0\), bounds its joint list and scalar norm
+by \(C\varepsilon e^{-cD/r_0}\), with normalization absorbed
+into \(C\). Consequently \(B_0\le C\varepsilon e^{-cD/r_0}\).
+
+For \(j<k\) the coefficient rule in the square-free ring gives
+\begin{equation}
+ (U_{j+1}^{0x},c_{j+1}^{0x})=
+ L^{1/4}\Big((0,c_j^{0x})
+      +\mathcal D_j^{(1)}(h_j)[U_j^{0x}]
+      +\mathcal D_j^{(2)}(h_j)[U_j^0,U_j^x]\Big).
+ \label{eq:mixed-update}
+\end{equation}
+The two label orders in the quadratic Taylor term cancel its
+factor \(1/2\).
+The accumulated scalar is spin independent and is carried along
+separately. The terms linear in \((U_j^{0x},c_j^{0x})\) are
+bounded in joint norm by \(K B_j\), for a scale-independent \(K\).
+
+Write \(Z=Z_\phi(g)\). By disjointness,
+\(\mathcal D_j^{(2)}(0)[Zv_j^0,Zv_j^x]=0\), including its
+scalar part. Subtracting it from the bilinear term in
+\eqref{eq:mixed-update} gives
+\begin{align*}
+ &\big(\mathcal D_j^{(2)}(h_j)-\mathcal D_j^{(2)}(0)\big)
+       [U_j^0,U_j^x] \\
+ &\quad + \mathcal D_j^{(2)}(0)[\eta_j^0,U_j^x]
+         + \mathcal D_j^{(2)}(0)[Zv_j^0,\eta_j^x].
+\end{align*}
+Each contributing generating union has max-norm diameter at
+least \(D/\sqrt2\) because it contains both marks. The joint diameter bound controls the displayed
+terms by
+\[
+ C e^{-cD/r_{j+1}}\bigl(\|h_j\|_{r_j}
+               +\|\eta_j^0\|_{r_j,\bullet}
+               +\|\eta_j^x\|_{r_j,\bullet}\bigr).
+\]
+Here the remaining one-source factors have uniformly bounded
+norm. It follows that
+\[
+ B_{j+1}\le K B_j+
+ C\varepsilon\theta^j e^{-cD/r_{j+1}}.
+\]
+Iterating and using \(r_k/r_{k-m}=L^m\) bounds the
+inhomogeneous sum by
+\[
+ C\varepsilon\theta^k\sum_{m\ge0}
+    (K/\theta)^m e^{-c(D/r_k)L^m}\le C'\varepsilon\theta^k.
+\]
+The initial term obeys the same bound since
+\(K^k e^{-cD/r_0}/\theta^k=(K/\theta)^k
+e^{-c(D/r_k)L^k}\) is uniformly bounded.
+This proves \eqref{eq:mixed-bound}.
+\end{proof}
+
+Define the residual periodic probability law by
+\[
+ \nu_{N,j}(d\sigma)=
+ \frac{\exp\bigl(\operatorname{ev}(H_j^N)(\sigma)\bigr)}
+      {\mu_{{\rm I},N}\bigl[\exp(\operatorname{ev}(H_j^N))\bigr]}
+ \,\mu_{{\rm I},N}(d\sigma).
+\]
+The real coefficients of \(H_j^N\) and finite volume make this a
+positive probability law.
+
+\begin{lemma}[Comparison of an unscaled even test]
+\label{lem:terminal-test}
+Let \(F\) be an even test carried by a connected set \(A\)
+with specified anchor \(u\in A\) on \(\mathbb T_N\).
+Suppose \(k\le s\) and \(r_s\le\vartheta N\).
+There is a \(q<1\) independent of \(F,k,s,N\) such that
+\[
+ |\nu_{N,k}(F)-\mu_{{\rm I},N}(F)|
+ \le C e^{n_{r_k}(A)}\|F\|_\infty
+        \bigl(\varepsilon\gamma^k+q^{s-k}\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(c\) be the uniform-spin mean of \(F\) on \(A\).
+Insert \(F-c\) at scale \(k\) as one unscaled auxiliary
+marked list \(f_k\), and carry \(c\) as its scalar.
+The list norm is at most
+\(C_F=2e^{n_{r_k}(A)}\|F\|_\infty\).
+At scale \(j\) the linear transfer and scalar increment are
+the two components of
+\(\mathcal D_j^{(1)}(H_j^N)\), computed on the torus.
+Use \(f_j^0\) for the analogous pure lists, with
+\(f_k^0=f_k\). The unscaled even pure list map contracts
+by Proposition~\ref{prop:linear}. Both the list map and
+the scalar functional differ from their pure values in
+operator norm by at most \(C\varepsilon\gamma^j\), by
+Propositions~\ref{prop:blocking} and \ref{prop:periodic}.
+For sufficiently large \(g\), both list maps have norm
+at most some fixed \(q<1\) at all the chart scales.
+It follows that
+\[
+ \|f_j\|_{r_j,\bullet}+\|f_j^0\|_{r_j,\bullet}
+ \le 2C_F q^{j-k},\qquad
+ \|f_j-f_j^0\|_{r_j,\bullet}
+ \le C C_F\varepsilon\gamma^k(j-k)q^{j-k-1}\quad(j>k).
+\]
+The second bound is obtained by telescoping the products of
+the two maps at each position \(i\in[k,j-1]\).
+
+Let \(\ell_j(H_j^N)\) denote the scalar functional of the
+one-input operator at scale \(j\).
+The exact partition identity, with one square-free label,
+gives
+\[
+ \nu_{N,k}(F)=c+
+ \sum_{j=k}^{s-1}\ell_j(H_j^N)[f_j]
+ +\nu_{N,s}(\operatorname{ev}(f_s)).
+\]
+There is the corresponding identity with \(H_j^N=0\),
+\(f_j^0\) and \(\mu_{{\rm I},N}\).
+The initial scalar cancels. Boundedness of the scalar
+functional and the preceding estimates bound the difference
+of the scalar sums by
+\[
+ C\sum_{j=k}^{s-1}
+   \left(\|f_j-f_j^0\|_{r_j,\bullet}
+          +\varepsilon\gamma^j\|f_j\|_{r_j,\bullet}\right)
+ \le C C_F\varepsilon\gamma^k.
+\]
+The two terminal expectations are bounded in absolute value
+by their list norms, since the measures are positive.
+This proves the claimed estimate.
+\end{proof}
+
+\begin{proposition}[Two-point comparison at the tuned temperature]
+\label{prop:two-point-comparison}
+With \(k\) as in Proposition~\ref{prop:mixed-source},
+\begin{equation}
+ \limsup_{N\to\infty}
+ \left|r_k^{1/4}G_{\phi,\beta_*;N}(x)-
+ Z_\phi(g)^2 r_k^{1/4}G_{{\rm I};N}(x)\right|
+ \le C\varepsilon\theta^k.
+ \label{eq:two-point-periodic-comparison}
+\end{equation}
+Here \(x\) and \(k\) are held fixed in the periodic limit.
+\end{proposition}
+
+\begin{proof}
+The partition identity at scale \(k\), after canceling the
+background scalar and using the vanishing one-source scalars,
+is
+\[
+ \frac{\mathcal Z_{N,\beta_*}(r_k^{1/8}t)}
+      {\mathcal Z_{N,\beta_*}(0)}
+ = e^{t_0t_xc_{N,k}^{0x}}\,
+    \nu_{N,k}\!\left[
+     \exp\!\left(t_0\operatorname{ev}(U_{N,k}^0)
+             +t_x\operatorname{ev}(U_{N,k}^x)
+             +t_0t_x\operatorname{ev}(U_{N,k}^{0x})\right)\right].
+\]
+The argument \(r_k^{1/8}t\) multiplies both labels.
+Taking the coefficient of \(t_0t_x\) yields
+\begin{equation}
+ \begin{split}
+ r_k^{1/4}G_{\phi,\beta_*;N}(x)
+ &=c_{N,k}^{0x}
+   +\nu_{N,k}(\operatorname{ev}(U_{N,k}^{0x}))\\
+ &\quad+\nu_{N,k}\bigl(
+    \operatorname{ev}(U_{N,k}^0)\operatorname{ev}(U_{N,k}^x)\bigr).
+ \end{split}
+ \label{eq:direct-two-source-exact}
+\end{equation}
+
+Set \(F_k=\operatorname{ev}(v_k^0)\operatorname{ev}(v_k^x)\)
+on the two lifted cutting squares, viewed on the torus.
+The marked norm bounds the evaluation norm, and chart projection
+does not increase it. Lemma~\ref{lem:periodic-marks} and
+Propositions~\ref{prop:one-source} and \ref{prop:mixed-source}
+therefore give
+\[
+ r_k^{1/4}G_{\phi,\beta_*;N}(x)
+   =Z_\phi(g)^2\nu_{N,k}(F_k)
+      +O(\varepsilon\theta^k)+o_N(1).
+\]
+The test \(F_k\) is even with uniformly bounded sup norm.
+By \eqref{eq:separation-scale}, a square of radius \(C_{b_0}r_k\)
+contains both carriers and has \(n_{r_k}\) bounded uniformly
+in \(x\). Lemma~\ref{lem:terminal-test}, with the largest \(s\)
+such that \(r_s\le\vartheta N\), now gives
+\[
+ \nu_{N,k}(F_k)=\mu_{{\rm I},N}(F_k)+
+ O(\varepsilon\gamma^k)+o_N(1).
+\]
+Finally, under \(\mu_{{\rm I},N}\), condition on the exterior
+of the two cutting interiors. The disjoint interiors have
+conditionally independent spins and their conditional means are
+the defining kernels of \(v_k^0\) and \(v_k^x\).
+Consequently \(\mu_{{\rm I},N}(F_k)=r_k^{1/4}G_{{\rm I};N}(x)\)
+for all sufficiently large \(N\). Since \(\gamma<\theta\),
+this proves \eqref{eq:two-point-periodic-comparison}.
+\end{proof}
+
+\section{Thermodynamic limit and criticality}
+\label{sec:criticality}
+
+\begin{lemma}[Fixed-separation torus limits]\label{lem:thermodynamic-limits}
+For each fixed \(\beta\ge0\), \(g>0\) and \(x\in\mathbb Z^2\),
+\[
+ \lim_{N\to\infty}G_{\phi,\beta;N}(x)=G_{\phi,\beta}(x),\qquad
+ \lim_{N\to\infty}G_{{\rm I};N}(x)=G_{\rm I}(x).
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(m_{p,N}=\langle|\phi_0|^p\rangle_{N,\beta}\). Integration by
+parts in \(\phi_0\), using the quartic tails, gives
+\[
+ 4g(m_{4,N}-m_{2,N})=
+ 1+\beta\sum_{z:\,z\sim0}\langle\phi_0\phi_z\rangle_{N,\beta}
+ \le 1+4\beta m_{2,N}.
+\]
+Since \(m_{2,N}\le m_{4,N}^{1/2}\), the fourth moments are uniformly
+bounded for fixed \(g,\beta\). The periodic extensions to \(\mathbb Z^2\)
+are therefore locally tight. Any limit is stationary and spin-flip
+symmetric.
+
+For each finite set, the finite-volume conditional kernels coincide
+with the infinite-lattice kernels on fixed cylinder tests when \(N\)
+is sufficiently large. For a bounded continuous test of the interior
+variables, the kernel is continuous in its boundary values by quartic
+domination on compact sets. Passing the conditional identity to the
+limit and then using a monotone class gives the DLR equations.
+They imply that finite marginals are absolutely continuous. Moreover,
+the lattice pointwise ergodic theorem applied to \(\phi_0^2\) gives
+almost surely bounded centered box averages of \(\phi_v^2\).
+Thus the limits meet the temperedness requirement of
+\cite[Appendix D]{GPPSCurrents}. By
+\cite[Theorem 1.2]{GPPSCurrents}, each stationary symmetric limit is the
+symmetric mixture of the plus and minus states, which is also the
+free state. The uniform fourth moment bound gives uniform
+integrability of \(\phi_0\phi_x\), so the correlations converge to
+those of that state.
+
+For the pure Ising model, local subsequential limits are critical
+nearest-neighbor Gibbs measures. Uniqueness at \(\beta_{\rm I}\)
+\cite{DSTIsingUnique} gives the second assertion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:two-point-comparison} and
+Lemma~\ref{lem:thermodynamic-limits} imply, at \(\beta=\beta_*(g)\),
+\[
+ G_{\phi,\beta_*}(x)
+ =Z_\phi(g)^2G_{\rm I}(x)+O(\varepsilon r_k^{-1/4}\theta^k).
+\]
+Here \(r_k\asymp |x|\) by \eqref{eq:separation-scale}, so for
+\(\omega=-\log\theta/\log L>0\) the error is
+\(O(\varepsilon |x|^{-1/4-\omega})\).
+The pure reference has \(G_{\rm I}(x)\sim C_{\rm I}|x|^{-1/4}\)
+with \(C_{\rm I}>0\) \cite{CIMBulkSpin}. Thus the correlation at
+\(\beta_*(g)\) tends to zero and its lattice sum diverges.
+
+The three critical inverse temperatures for magnetization, finite
+susceptibility and long-range order coincide by
+\cite[Proposition C.1]{GPPSCurrents}. For \(\beta<\beta_c(g)\),
+the free two-point function is summable. For
+\(\beta>\beta_c(g)\), it has strictly positive infimum over \(x\),
+using its monotonicity in \(\beta\) by the Griffiths inequality.
+The two properties at \(\beta_*(g)\) force
+\(\beta_*(g)=\beta_c(g)\). The preceding comparison proves
+\eqref{eq:direct-bulk-phi-two} with
+\(C_g=C_{\rm I}Z_\phi(g)^2>0\).
+\end{proof}
+
+\begingroup
+\small
+\begin{thebibliography}{9}
+\setlength{\itemsep}{2pt}
+
+\bibitem{BulkIsingRadialRG}
+OpenAI.
+\emph{Conformal universality of bulk Ising correlations under weak interactions}.
+Preprint, 2026.
+\href{https://github.com/openai/math/blob/main/preprints/Conformal-universality-of-bulk-Ising-correlations-under-weak-interactions-September-23-2026/paper.pdf}{Manuscript}.
+
+\bibitem{Ueltschi}
+D.~Ueltschi.
+\emph{Cluster expansions and correlation functions}.
+\href{https://arxiv.org/abs/math-ph/0304003}{arXiv:math-ph/0304003}.
+
+\bibitem{GPPSCurrents}
+T.~S.~Gunaratnam, C.~Panagiotis, R.~Panis and F.~Severo.
+\emph{Random tangled currents for \(\varphi^4\): translation invariant Gibbs measures and continuity of the phase transition}.
+\href{https://arxiv.org/abs/2211.00319}{arXiv:2211.00319}.
+
+\bibitem{DSTIsingUnique}
+H.~Duminil-Copin, V.~Sidoravicius and V.~Tassion.
+\emph{Continuity of the phase transition for planar random-cluster and Potts models with \(1\le q\le4\)}.
+\href{https://arxiv.org/abs/1505.04159}{arXiv:1505.04159}.
+
+\bibitem{CIMBulkSpin}
+D.~Chelkak, K.~Izyurov and R.~Mahfouf.
+\emph{Universality of spin correlations in the Ising model on isoradial graphs}.
+\href{https://arxiv.org/abs/2104.12858}{arXiv:2104.12858}.
+
+\end{thebibliography}
+\endgroup
+\end{document}
