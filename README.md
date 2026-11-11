@@ -7,11 +7,13 @@
 
 
 # Fractional Spread-out Ising model (/fractional_spread_out_ising_rg)
-* This folder includes results on the critical Ising model in dimensions $d\le 4$, with interaction kernel $(-\Delta_R)^{d/4}$, where $\Delta_R$ is the spread-out Laplacian with radius $R$. The main theorem states: for each \(d\in\{1,2,3,4\}\) and all sufficiently large fixed $R$, the Ising model with interaction kernel $(-\Delta_R)^{d/4}$ has critical free two-point asymptotic
+* This folder includes results on the critical Ising model in dimensions $d\le 4$, with interaction kernel $(-\Delta_R)^{d/4}$, where $\Delta_R$ is the spread-out Laplacian with radius $R$. 
+* Correlation function of the fractional spread-out Ising models at their upper critical dimension and critical temperature:
+** The main theorem states: for each \(d\in\{1,2,3,4\}\) and all sufficiently large fixed $R$, the Ising model with interaction kernel $(-\Delta_R)^{d/4}$ has critical free two-point asymptotic
 
 <p align="center"> $\langle\sigma_0\sigma_x\rangle^f_{\tau_c} \sim C_{d,R}|x|^{-d/2},\qquad C_{d,R}>0, \qquad |x|\rightarrow\infty$. </p>
 
-* In particular, in $d=4$, the model is the usual Ising model with the nearest-neighbour interaction replaced by the spread-out Laplacian.
+** In particular, in $d=4$, the model is the usual Ising model with the nearest-neighbour interaction replaced by the spread-out Laplacian.
 
 # Critical $\phi^4_2$ model (/critical_phi42)
 * This folder includes results on the critical $\phi^4$ model in dimensions $d=2$, with sufficiently large coupling constant. The document "The critical two-point function of lattice $\phi^4_2$" shows that the two-point correlation function follows an asymptotic behavior equivalent to that of the Ising model, $C|x|^{-1/4}$.
