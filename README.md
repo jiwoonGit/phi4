@@ -6,7 +6,7 @@ This repository contains manuscripts on strong-coupling 2D lattice phi4 and frac
 
 ## Critical two-point function of 2D lattice phi4 at strong coupling
 
-[The critical two-point function of lattice $\phi^4_2$ (PDF)](critical_phi42/critical_phi42.pdf)
+[The critical two-point function of lattice $\phi^4_2$ (PDF)](critical_phi42/critical_phi42.pdf) · [Abstract and main theorem](https://jiwoon-park-math.github.io/critical-phi4.html)
 
 For the nearest-neighbor square-lattice model with single-site weight proportional to $e^{-g(\phi^2-1)^2}$, the main theorem gives the Ising decay exponent $1/4$ for all sufficiently large $g$. The critical free two-point function satisfies
 
@@ -16,7 +16,7 @@ $$
 
 ## Fractional spread-out Ising models at their upper critical dimension
 
-[Correlation function of the fractional spread-out Ising models at their upper critical dimension and critical temperature (PDF)](fractional_spread_out_ising_rg/spread_out_ising_rg.pdf)
+[Correlation function of the fractional spread-out Ising models at their upper critical dimension and critical temperature (PDF)](fractional_spread_out_ising_rg/spread_out_ising_rg.pdf) · [Abstract and main theorem](https://jiwoon-park-math.github.io/fractional-spread-out-ising.html)
 
 For each $d\in\{1,2,3,4\}$ and all sufficiently large fixed spread radii $R$, the main theorem gives the critical free two-point function for the Ising model with interaction kernel $(-\Delta_R)^{d/4}$, where $\Delta_R$ is the spread-out Laplacian. Its decay exponent is $d/2$.
 
